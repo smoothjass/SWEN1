@@ -1,0 +1,73 @@
+@startuml
+ class Game{
+    -UserHandler
+    -Battle
+    -StoreHandler
+ }
+ Game o-- UserHandler
+ Game o-- Battle
+ Game o-- StoreHandler
+ class Battle{
+ -User PlayerA
+ -User PlayerB
+ -int rounds
+ -String log
+ +bool incrementRounds()
+ }
+ Battle o-- User
+ class StoreHandler{}
+ class User{
+    -String username
+    -String password
+    -int coins
+    -Deck
+    -Stack
+    -float ELO
+ }
+ User o-- Deck
+ User o-- Stack
+ struct element{
+    +{static} final int fire = 0
+    +{static} final int water = 1
+    +{static} final int normal = 2
+    +{static} int[3][3] effectiveness
+ }
+ enum cardType{
+    +monster
+    +spell
+ }
+ entity tradeRequest{}
+ interface IDataHandler{
+    +create()
+    +read()
+    +update()
+    +delete()
+ }
+ class UserHandler{}
+ IDataHandler <|-- UserHandler
+ IDataHandler <|-- StoreHandler
+ class Card {
+    #int element
+    #int cardType
+    #final int damage
+ }
+ class Monster{
+    -String monsterType
+ }
+ class Spell{}
+ Card <|-- Monster
+ Card <|-- Spell
+ class Stack{
+    -ArrayList<Card> cards
+ }
+ class Deck{
+    -ArrayList<Card> cards
+ }
+ class Package{
+    -Card[5] cards
+ }
+ Stack o-- Card
+ Deck o-- Card
+ Package o-- Card
+
+@enduml
