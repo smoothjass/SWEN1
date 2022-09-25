@@ -36,6 +36,7 @@
     +monster
     +spell
  }
+ class Test{}
  entity tradeRequest{}
  interface IDataHandler{
     +create()
